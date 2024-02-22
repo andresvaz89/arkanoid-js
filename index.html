@@ -1,4 +1,5 @@
 <title>Arkanoid en Javascript</title>
+<head></head>
 <style>
   body {
     background-color: #111;
@@ -12,8 +13,9 @@
     display: block;
   }
 </style>
-
-<canvas></canvas>
+<body>
+  <canvas></canvas>
+</body>
 
 <script>
   const canvas = document.querySelector('canvas');
@@ -33,18 +35,31 @@
 
   // velocidad de la pelota
   let dx = 2;
-  let dy = 2;
+  let dy = -2;
 
-  function drawBall() {}
+  function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctx.fillStyle = '#fff';
+    ctx.fill();
+    ctx.closePath();
+  }
   function drawPaddle() {}
   function drawBricks() {}
 
-  function drawCollisionDetection() {}
-  function ballMovement() {}
+  function collisionDetection() {}
+  function ballMovement() {
+    x += dx;
+    y += dy;
+  }
   function paddleMovement() {}
 
+  function cleanCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
   function draw() {
     // dibujo de elementos
+    cleanCanvas();
     drawBall();
     drawPaddle();
     drawBricks();
